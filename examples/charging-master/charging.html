@@ -1,0 +1,25 @@
+{% include "common/header.html" %}
+<!--
+For integration using IFRAME mode, create a new HTML IFRAME element
+and set its "src" attribute to $charging_object["url"]
+ -->
+{% if obj.params.ui_mode == "IFRAME" %}
+    <h3>Integration using iframe</h3>
+    <iframe src="{{ obj.url }}" height="60%" width="100%"></iframe>
+{% elif obj.params.ui_mode == "REDIRECT" %}
+    <!--
+    For integration using REDIRECT mode, create a new HTML form, with hidden elements.
+    Set its "action" attribute to $charging_object["url"].
+    Create hidden input elements for every key, value pair in $charging_object["params"].
+    -->
+    <h3>Integration using redirect</h3>
+    <form method="POST" action="{{ obj.url }}" id="payzippyForm">
+        {% for key, value in obj.params.items %}
+            <input type='hidden' name="{{ key }}" value="{{ value }}">
+        {% endfor %}
+    </form>
+    <script>
+        document.getElementById("payzippyForm").submit();
+    </script>
+{% endif %}
+{% include "common/footer.html" %}

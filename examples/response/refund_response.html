@@ -1,0 +1,36 @@
+{% include "common/header.html" %}
+
+<!-- Call the validate function, to check the integrity of the response
+ by verifying the hash returned
+ -->
+{% if resObj.is_valid_response %}
+    <p class='text-success'><b>Hash matches. The response is valid.</b></p>
+{% else %}
+    <p class='text-error'><b>Hash mismatch. Response is invalid</b></p>
+{% endif %}
+Status Code: {{ resObj.get_status_code }}<br/>
+Status Message: {{ resObj.get_status_message }}<br/>
+Error Code: {{ resObj.get_error_code }}<br/>
+Error Message: {{ resObj.get_error_message }}<br/>
+Merchant ID: {{ resObj.get_merchant_id }}<br/>
+Merchant Key ID: {{ resObj.get_merchant_key_id }}<br/>
+Hash Method: {{ resObj.get_hash_method }}<br/>
+Hash: {{ resObj.get_hash }}<br/>
+<br/>
+<h4>Refund Response</h4>
+Merchant Transaction ID: {{ resObj.get_transaction_response.get_merchant_transaction_id }} <br/>
+Payzippy Transaction ID: {{ resObj.get_transaction_response.get_payzippy_transaction_id }}<br/>
+Refund Amount: {{ resObj.get_transaction_response.get_refund_amount }}<br/>
+Refund Status: {{ resObj.get_transaction_response.get_refund_status }}<br/>
+Refund Code: {{ resObj.get_transaction_response.get_refund_response_code }}<br/>
+Refund  Message: {{ resObj.get_transaction_response.get_refund_response_message }}<br/>
+Bank ARN: {{ resObj.get_transaction_response.get_bank_arn }}<br/>
+Currency: {{ resObj.get_transaction_response.get_currency }}<br/>
+Transaction Time: {{ resObj.get_transaction_response.get_transaction_time }}<br/>
+UDF1: {{ resObj.get_transaction_response.get_udf1 }}<br/>
+UDF2: {{ resObj.get_transaction_response.get_udf2 }}<br/>
+UDF3: {{ resObj.get_transaction_response.get_udf3 }}<br/>
+UDF4: {{ resObj.get_transaction_response.get_udf4 }}<br/>
+UDF5: {{ resObj.get_transaction_response.get_udf5 }}<br/>
+<hr/>
+{% include "common/footer.html" %}

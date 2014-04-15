@@ -1,0 +1,105 @@
+{% include "common/header.html" %}
+
+<div class="span10">
+    <p class="text-info">This page corresponds to your final checkout page.
+        If the UI Mode is set to "REDIRECT", the user will be redirected to Payzippy charging page on clicking the
+        Pay button.
+    </p>
+
+    <p class="text-info">
+        This examples includes the minimum required parameters that must be sent. Bank Name is required only for NET and
+        EMI.
+    </p>
+</div>
+
+<div class="clearfix"></div>
+
+<form class="form-horizontal" method="post" action=".">
+    <fieldset>
+        <div class="well span10">
+            <legend>Checkout Details</legend>
+
+            <div class="control-group">
+                <label class="control-label">Buyer Email Address</label>
+
+                <div class="controls">
+                    <input id="buyer_email_address" name="buyer_email_address" type="text" value="user@domain.com"
+                           class="input-xlarge" required="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Transaction Amount (in Paisa)</label>
+
+                <div class="controls">
+                    <input id="transaction_amount" name="transaction_amount" type="text" value="100"
+                           class="input-xlarge" required="">
+
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Payment Method</label>
+
+                <div class="controls">
+                    <select id="payment_method" name="payment_method" class="input-xlarge">
+                        <option>PAYZIPPY</option>
+                        <option>CREDIT</option>
+                        <option>DEBIT</option>
+                        <option>NET</option>
+                        <option>EMI</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Select Basic -->
+            <div class="control-group">
+                <label class="control-label">Emi Months</label>
+
+                <div class="controls">
+                    <select id="emi_months" name="emi_months" class="input-xlarge">
+                        <option value="0">0</option>
+                        <option value="3">3</option>
+                        <option value="6">6</option>
+                        <option value="9">9</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label">Bank Name</label>
+
+                <div class="controls">
+                    <input id="bank_name" name="bank_name" type="text" value="HDFC" class="input-xlarge">
+
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Merchant Transaction Id</label>
+
+                <div class="controls">
+                    <input id="merchant_transaction_id" name="merchant_transaction_id" type="text"
+                           value="{{ trxId }}" class="input-xlarge" required="">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">UI Mode</label>
+
+                <div class="controls">
+                    <select id="ui_mode" name="ui_mode" class="input-xlarge">
+                        <option>REDIRECT</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" id="button" class="btn btn-info" value="Pay with PayZippy">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+{% include "common/footer.html" %}

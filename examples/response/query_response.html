@@ -1,0 +1,42 @@
+{% include "common/header.html" %}
+<!-- Call the validate function, to check the integrity of the response
+ by verifying the hash returned
+ -->
+{% if resObj.is_valid_response %}
+    <p class='text-success'><b>Hash matches. The response is valid.</b></p>
+{% else %}
+    <p class='text-error'><b>Hash mismatch. Response is invalid</b></p>
+{% endif %}
+
+Status Code: {{ resObj.get_status_code }}<br/>
+Status Message: {{ resObj.get_status_message }}<br/>
+Error Code: {{ resObj.get_error_code }}<br/>
+Error Message: {{ resObj.get_error_message }}<br/>
+Merchant ID: {{ resObj.get_merchant_id }}<br/>
+Merchant Key ID: {{ resObj.get_merchant_key_id }}<br/>
+Hash Method: {{ resObj.get_hash_method }}<br/>
+Hash: {{ resObj.get_hash }}<br/>
+<br/>
+<!-- Calling get_transaction_responses() on the QueryResponse object
+ returns an array of QueryTransactionResponse objects. QueryTransactionResponse
+ objects corresponds to single/multiple sale/refund transactions.
+ -->
+<h4>Transaction Response(s)</h4>
+{% for each in resObj.get_transaction_responses %}
+    Merchant Transaction ID: {{ each.get_merchant_transaction_id }}<br/>
+    Payzippy Transaction ID: {{ each.get_payzippy_transaction_id }}<br/>
+    Bank ARN: {{ each.get_bank_arn }}<br/>
+    Transaction Amount: {{ each.get_transaction_amount }}<br/>
+    Transaction Currency: {{ each.get_transaction_currency }}<br/>
+    Transaction Time: {{ each.get_transaction_time }}<br/>
+    Payment Method: {{ each.get_payment_method }}<br/>
+    EMI Months: {{ each.get_emi_months }}<br/>
+    Transaction Type: {{ each.get_transaction_type }}<br/>
+    Transaction Status: {{ each.get_transaction_status }}<br/>
+    Transaction Response Code: {{ each.get_transaction_response_code }}<br/>
+    Transaction Response Message: {{ each.get_transaction_response_message }}<br/>
+    Fraud Action: {{ each.get_fraud_action }}<br/>
+    Fraud Details: {{ each.get_fraud_details }}<br/>
+    <hr/>
+{% endfor %}
+{% include "common/footer.html" %}

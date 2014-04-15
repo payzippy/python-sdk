@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Payzippy SDK</title>
+    <link href="/static/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href=".">PayZippy SDK</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li><a href="chargingmaster/">SDK Integration Examples</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h3>Structure of the SDK</h3>
+
+    <pre>
+
+    |- python-sdk
+        |- dist/
+        	|- PayZippySDK-0.1.0.tar.gz
+        |- django/
+        	|- static/
+        	|- config.ini
+            |- settings.py
+            |- urls.py
+            |- views.py
+        |- examples/
+        	|- charging-iframe/
+            |- charging-master/
+            |- charging-minimal/
+            |- charging-redirect/
+            |- common/
+            |- query/
+            |- refund/
+            |- response/
+            |- index.html
+        |- payzippysdk/
+            |- ChargingRequest.py
+            |- ChargingResponse.py
+            |- CommonUtil.py
+            |- Config.py
+            |- Constants.py
+            |- HashUtil.py
+            |- QueryRequest.py
+            |- QueryResponse.py
+            |- QueryTransactionResponse.py
+            |- RefundRequest.py
+            |- RefundResponse.py
+            |- RefundTransactionResponse.py
+            |- ValidityCheck.py
+    </pre>
+
+    <hr/>
+
+    <h3>Setup</h3>
+
+    <p>
+        To install the SDK
+    <ol>
+        <li>Extract the file <code>/dist/PayZippySDK-0.1.0.tar.gz</code> by running the command <code>gunzip <
+            PayZippySDK-0.1.0.tar.gz | tar xvf -</code> in your terminal
+        </li>
+        <li>Go inside the folder <code>PayZippySDK-0.1.0</code></li>
+        <li>Run the command <code>python setup.py install</code> in your terminal(Make sure you have python installed in
+            your computer)
+        </li>
+    </ol>
+    </p>
+    <p>
+        To run the examples
+    <ol>
+        <li>Use the <code>examples</code> folder as the template directory in your Django project.</li>
+        <li>Copy the file <code>config.ini</code> from the directory <code>django/</code> to your Django project.</li>
+        <li>Copy the directory <code>static</code> from the directory <code>django/</code> to your Django project.</li>
+        <li>Copy the <code>views</code> definition from the file <code>django/views.py</code> to <code>views.py</code>
+            file in your Django project.
+        </li>
+        <li>Copy the <code>urls</code> definition(including the imports) from the file <code>django/urls.py</code> to
+            <code>urls.py</code> file in your Django project.
+        </li>
+        <li>Copy the <code>BASE_DIR, STATIC_URL, STATICFILES_DIRS, TEMPLATE_DIRS</code> declarations from the file
+            <code>django/settings.py</code> to <code>settings.py</code> file in your Django project.
+        </li>
+        <li>To set up your config details, fill the details provided by PayZippy, in <code>config.ini</code> file.</li>
+        <ul>
+            <li><code>MERCHANT_ID</code> Your Merchant ID</li>
+            <li><code>SECRET_KEY</code> Your Secret Key for the Payzippy API. Do not share this!</li>
+            <li><code>CALLBACK_URL</code> The URL that the Charging API would call on transaction completion. For
+                the examples provided,
+                this should point to <code>
+                    <server-ip>:
+                        <port>/chargingresponse
+                </code> as defined in the file urls.py
+            </li>
+        </ul>
+        </li>
+    </ol>
+    </p>
+
+    <hr/>
+
+    <h3>Examples</h3>
+
+    <p>To check out the sample SDK integrations, go the <a href="chargingmaster/">SDK Integration
+        Examples</a> page.</p>
+    <hr/>
+</div>
+
+</body>
+</html>

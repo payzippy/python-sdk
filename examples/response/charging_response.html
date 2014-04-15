@@ -1,0 +1,48 @@
+{% include "common/header.html" %}
+{% if resObj.is_transaction_successful %}
+    <p class='text-success'>
+        {% else %}
+    <p class='text-error'>
+{% endif %}
+<b>
+    Transaction Status : {{ resObj.get_transaction_status }}<br/>
+    Transaction Response Code : {{ resObj.get_transaction_response_code }}<br/>
+    Transaction Response Message : {{ resObj.get_transaction_response_message }}<br/>
+</b></p>
+<!--
+To check the validity of the response, call the validate function on
+ the ChargingResponse object. It verifies the hash returned in the response.
+-->
+{% if resObj.is_valid_response %}
+    <p class='text-success'><b>Hash matches. The response is valid.</b></p>
+{% else %}
+    <p class='text-error'><b>Hash mismatch. Response is invalid</b></p>
+{% endif %}
+
+<h4>Charging Response</h4>
+Merchant ID: {{ resObj.get_merchant_id }}<br/>
+Merchant Key ID: {{ resObj.get_merchant_key_id }}<br/>
+Merchant Transaction ID: {{ resObj.get_merchant_transaction_id }}<br/>
+PayZippy Transaction ID: {{ resObj.get_payzippy_transaction_id }}<br/>
+Transaction Status: {{ resObj.get_transaction_status }}<br/>
+Transaction Response Code: {{ resObj.get_transaction_response_code }}<br/>
+Transaction Response Message: {{ resObj.get_transaction_response_message }}<br/>
+Payment Method: {{ resObj.get_payment_method }}<br/>
+Bank Name: {{ resObj.get_bank_name }}<br/>
+EMI Months: {{ resObj.get_emi_months }}<br/>
+Transaction Amount: {{ resObj.get_transaction_amount }}<br/>
+Transaction Currency: {{ resObj.get_transaction_currency }}<br/>
+Transaction Time: {{ resObj.get_transaction_time }}<br/>
+Fraud Action: {{ resObj.get_fraud_action }}<br/>
+Fraud Details: {{ resObj.get_fraud_details }}<br/>
+is international : {{ resObj.get_is_international }}<br/>
+Version: {{ resObj.get_version }}<br/>
+UDF1: {{ resObj.get_udf1 }}<br/>
+UDF2: {{ resObj.get_udf2 }}<br/>
+UDF3: {{ resObj.get_udf3 }}<br/>
+UDF4: {{ resObj.get_udf4 }}<br/>
+UDF5: {{ resObj.get_udf5 }}<br/>
+Hash Method: {{ resObj.get_hash_method }}<br/>
+Hash: {{ resObj.get_hash }}<br/>
+
+{% include "common/footer.html" %}

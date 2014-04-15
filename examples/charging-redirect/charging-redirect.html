@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Payzippy Integration Example</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <style>
+        .main-info {
+            background-color: #fcf8e3;
+            border: 2px solid #fbeed5;
+            color: #c09853;
+            padding: 25px;
+            width: 670px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -ms-border-radius: 10px;
+            border-radius: 10px;
+            -moz-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            -webkit-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            -ms-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            margin: 120px auto 0 auto;
+            text-align: center;
+            font: 25px/110% "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+        }
+
+        .progress {
+            width: 400px;
+            margin: 30px auto 0 auto;
+        }
+
+        .no-re-warn {
+            margin: 0 auto;
+            text-align: center;
+            width: 670px;
+            font: 18px/100% "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand">PayZippy Integration Examples</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="wrap inter-content" id="detect-iframe" style="display: block;">
+        <section class="main-info">
+            Processing your payment request...
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: 100%;"></div>
+            </div>
+        </section>
+        <p class="no-re-warn not">Please do not press stop, refresh or back button</p>
+    </div>
+
+    <!--
+    For integration using REDIRECT mode, create a new HTML form, with hidden elements.
+    Set its "action" attribute to $charging_object["url"].
+    Create hidden input elements for every key, value pair in $charging_object["params"].
+    -->
+    <form method="POST" action="{{ obj.url }}" id="payzippyForm">
+        {% for key, value in obj.params.items %}
+            <input type='hidden' name="{{ key }}" value="{{ value }}">
+        {% endfor %}
+    </form>
+</div>
+<script>
+    document.getElementById("payzippyForm").submit();
+</script>
+</body>
+</html>
