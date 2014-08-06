@@ -42,6 +42,9 @@ def chargingrequest(request):
    chObj.set_bank_name(request.POST.get('bank_name'))
    chObj.set_emi_months(request.POST.get('emi_months'))
 
+//The parameters item_vertical,item_total and buyer_phone_no are now mandatory.Pass these parameters for all the transactions(both domestic and international)
+
+
 //then call charge method which return a dictionary
 respMap = chObj.charge()
 
